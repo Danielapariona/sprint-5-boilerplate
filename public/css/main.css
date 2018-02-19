@@ -2,4 +2,6 @@
   margin: auto;
 }
 
-
+.comments .form-comments-js {
+  display: none;
+}

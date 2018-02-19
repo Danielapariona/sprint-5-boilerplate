@@ -34,7 +34,7 @@
         <div class="ui comments margin-auto">
           <br>
           <h3 class="ui dividing header">Temas</h3>
-          <div class="comment">
+          <div class="comment" id="1">
             <a class="avatar">
               <img src="assets/images/matt.jpg">
             </a>
@@ -49,29 +49,10 @@
               <div class="actions">
                 <span>3 </span>
                 <span>Respuestas</span>
-                <a class="reply">Responder</a>
+                <a class="reply reply-comment-js">Responder</a>
               </div>
             </div>
-          </div>
-          <div class="comment">
-            <a class="avatar">
-              <img src="assets/images/elliot.jpg">
-            </a>
-            <div class="content">
-              <a class="author">Elliot Fu</a>
-              <div class="metadata">
-                <span class="date">Yesterday at 12:30AM</span>
-              </div>
-              <div class="text">
-                <p>This has been very useful for my research. Thanks as well!</p>
-              </div>
-              <div class="actions">
-                <span>3 </span>
-                <span>Respuestas</span>
-                <a class="reply">Responder</a>
-              </div>
-            </div>
-            <div class="comments">
+            <div class="comments form-comments-js">
               <div class="comment">
                 <a class="avatar">
                   <img src="assets/images/jenny.jpg">
@@ -119,7 +100,7 @@
                 <div class="ui form">
                   <div class="field">
                     <label>Por:</label>
-                    <input type="text">
+                    <input type="text" class="author-comment">
                   </div>
                 </div>
                 <br>
@@ -133,7 +114,87 @@
               </form>
             </div>
           </div>
-          <div class="comment">
+          <div class="comment" id="2">
+            <a class="avatar">
+              <img src="assets/images/elliot.jpg">
+            </a>
+            <div class="content">
+              <a class="author">Elliot Fu</a>
+              <div class="metadata">
+                <span class="date">Yesterday at 12:30AM</span>
+              </div>
+              <div class="text">
+                <p>This has been very useful for my research. Thanks as well!</p>
+              </div>
+              <div class="actions">
+                <span>3 </span>
+                <span>Respuestas</span>
+                <a class="reply reply-comment-js">Responder</a>
+              </div>
+            </div>
+            <div class="comments form-comments-js">
+              <div class="comment">
+                <a class="avatar">
+                  <img src="assets/images/jenny.jpg">
+                </a>
+                <div class="content">
+                  <a class="author">Jenny Hess</a>
+                  <div class="metadata">
+                    <span class="date">Just now</span>
+                  </div>
+                  <div class="text">
+                    Elliot you are always so right :)
+                  </div>
+                </div>
+              </div>
+              <div class="comment">
+                <a class="avatar">
+                  <img src="assets/images/jenny.jpg">
+                </a>
+                <div class="content">
+                  <a class="author">Jenny Hess</a>
+                  <div class="metadata">
+                    <span class="date">Just now</span>
+                  </div>
+                  <div class="text">
+                    Elliot you are always so right :)
+                  </div>
+                </div>
+              </div>
+              <div class="comment">
+                <a class="avatar">
+                  <img src="assets/images/jenny.jpg">
+                </a>
+                <div class="content">
+                  <a class="author">Jenny Hess</a>
+                  <div class="metadata">
+                    <span class="date">Just now</span>
+                  </div>
+                  <div class="text">
+                    Elliot you are always so right :)
+                  </div>
+                </div>
+              </div>
+              <br>
+              <form class="ui reply form">
+                <div class="ui form">
+                  <div class="field">
+                    <label>Por:</label>
+                    <input type="text" class="author-comment">
+                  </div>
+                </div>
+                <br>
+                <div class="field">
+                  <label>Mensaje</label>
+                  <textarea></textarea>
+                </div>
+                <div class="ui blue labeled submit icon button">
+                  <i class="icon edit"></i> Agregar comentario
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="comment" id="3">
             <a class="avatar">
               <img src="assets/images/joe.jpg">
             </a>
@@ -148,8 +209,69 @@
               <div class="actions">
                 <span>3</span>
                 <span>Respuestas</span>
-                <a class="reply">Responder</a>
+                <a class="reply reply-comment-js">Responder</a>
               </div>
+            </div>
+            <div class="comments form-comments-js">
+              <div class="comment">
+                <a class="avatar">
+                  <img src="assets/images/jenny.jpg">
+                </a>
+                <div class="content">
+                  <a class="author">Jenny Hess</a>
+                  <div class="metadata">
+                    <span class="date">Just now</span>
+                  </div>
+                  <div class="text">
+                    Elliot you are always so right :)
+                  </div>
+                </div>
+              </div>
+              <div class="comment">
+                <a class="avatar">
+                  <img src="assets/images/jenny.jpg">
+                </a>
+                <div class="content">
+                  <a class="author">Jenny Hess</a>
+                  <div class="metadata">
+                    <span class="date">Just now</span>
+                  </div>
+                  <div class="text">
+                    Elliot you are always so right :)
+                  </div>
+                </div>
+              </div>
+              <div class="comment">
+                <a class="avatar">
+                  <img src="assets/images/jenny.jpg">
+                </a>
+                <div class="content">
+                  <a class="author">Jenny Hess</a>
+                  <div class="metadata">
+                    <span class="date">Just now</span>
+                  </div>
+                  <div class="text">
+                    Elliot you are always so right :)
+                  </div>
+                </div>
+              </div>
+              <br>
+              <form class="ui reply form">
+                <div class="ui form">
+                  <div class="field">
+                    <label>Por:</label>
+                    <input type="text" class="author-comment">
+                  </div>
+                </div>
+                <br>
+                <div class="field">
+                  <label>Mensaje</label>
+                  <textarea></textarea>
+                </div>
+                <div class="ui blue labeled submit icon button">
+                  <i class="icon edit"></i> Agregar comentario
+                </div>
+              </form>
             </div>
           </div>
         </div>
@@ -166,7 +288,7 @@
         <div class="ui form">
           <div class="field">
             <label>Por:</label>
-            <input type="text">
+            <input type="text" class="author-comment">
           </div>
         </div>
         <br>
