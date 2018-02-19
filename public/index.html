@@ -6,7 +6,6 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="vendors/semantic/semantic.min.css">
-  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="css/main.css">
   <title></title>
 </head>
@@ -22,7 +21,7 @@
       </div>
       <div class="ui eight wide column">
         <div class="ui left floated header">
-          <button class="ui button">
+          <button class="ui button" id="add-theme">
             Crea un tema
           </button>
         </div>
@@ -157,8 +156,34 @@
       </div>
     </section>
   </main>
-
-
+  <div class="ui small modal">
+    <i class="close icon"></i>
+    <div class="header">
+      Crea un tema
+    </div>
+    <div class="content">
+      <form class="ui reply form">
+        <div class="ui form">
+          <div class="field">
+            <label>Por:</label>
+            <input type="text">
+          </div>
+        </div>
+        <br>
+        <div class="field">
+          <label>Mensaje</label>
+          <textarea></textarea>
+        </div>
+        <div class="ui blue labeled submit icon button">
+          <i class="icon edit"></i> Agregar Tema
+        </div>
+      </form>
+    </div>
+    <!-- <div class="actions">
+      <div class="ui button">Cancel</div>
+      <div class="ui button">OK</div>
+    </div> -->
+  </div>
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
   <script src="vendors/semantic/semantic.min.js"></script>
