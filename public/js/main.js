@@ -58,8 +58,6 @@ $(document).on('click', '.reply-comment-js', function () {
             </div>
           </form>`
         );
-
-
       },
       fail: function (request) {
         if (request) {
@@ -127,7 +125,6 @@ function templateComment(id, author, content, responseCount) {
 }
 
 $('#post-topic').on('click', function () {
-  console.log('submit')
   const author = $('#post-author').val();
   const content = $('#post-content').val();
 
@@ -138,11 +135,12 @@ $('#post-topic').on('click', function () {
 
   $.ajax({
     url: `http://examen-laboratoria-sprint-5.herokuapp.com/topics`,
-    // contentType: 'application/json',
     method: 'POST',
     data: topic,
     success: function (response) {
       console.log('enviado');
+      $('.ui.small.modal')
+        .modal('hide');
     },
     fail: function (request) {
       if (request) {
