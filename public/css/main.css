@@ -2,6 +2,14 @@
   margin: auto;
 }
 
-.comments .form-comments-js {
+/* .comments .form-comments-js {
   display: none;
+} */
+
+.hidden {
+  display: none !important;
+}
+
+.content-block {
+  display: block !important;
 }
