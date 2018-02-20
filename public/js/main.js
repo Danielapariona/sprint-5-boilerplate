@@ -17,7 +17,6 @@ $(document).on('click', '.reply-comment-js', function () {
       method: 'GET',
       success: function (response) {
         $.each(response, function (i, obj) {
-
           const author = response[i].author_name;
           const content = response[i].content;
           const idMessage = response[i].id;
@@ -90,11 +89,11 @@ $.ajax({
   contentType: 'application/json',
   method: 'GET',
   success: function (response) {
-    $.each(response, function (i, obj) {
-      const id = response[i].id;
-      const author = response[i].author_name;
-      const content = response[i].content;
-      const responseCount = response[i].responses_count;
+    $.each(response.reverse() , function (i, obj) {
+      const id = obj.id;
+      const author = obj.author_name;
+      const content = obj.content;
+      const responseCount = obj.responses_count;
       templateComment(id, author, content, responseCount)
     })
   },
@@ -105,8 +104,8 @@ $.ajax({
   }
 });
 
-function templateComment(id, author, content, responseCount) {
-  $('#container-comments-js').append(
+function templateComment(id = 0, author, content, responseCount = 0) {
+  $('#container-comments-js').prepend(
     `<div class="comment" id="${id}">
       <a class="avatar">
         <img src="assets/images/matt.jpg">
@@ -149,6 +148,7 @@ $('#post-topic').on('click', function () {
       console.log('enviado');
       $('.ui.small.modal')
         .modal('hide');
+      templateComment(id = 0, author, content, responseCount = 0)
     },
     fail: function (request) {
       if (request) {
@@ -157,7 +157,6 @@ $('#post-topic').on('click', function () {
     }
   });
 })
-
 
 $(document).on('click', '#submit-comment', function () {
   console.log('submit comentario');
