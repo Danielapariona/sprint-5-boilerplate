@@ -161,25 +161,24 @@ $('#post-topic').on('click', function () {
 
 $(document).on('click', '#submit-comment', function () {
   console.log('submit comentario');
-  const author = $('#answer-author-js').val();
-  const content = $('#answer-comment').val();
+  const author = $('#answer-author-js');
+  const content = $('#answer-comment');
   const idTopic = $(this).parent().parent().parent().attr('id');
-  
-  // console.log(author);
-  // console.log(content);
 
   const answer = {
-    "author_name": author,
-    "content": content
+    "author_name": author.val(),
+    "content": content.val()
   }
-  
+
   $.ajax({
     url: `http://examen-laboratoria-sprint-5.herokuapp.com/topics/${idTopic}/responses`,
     method: 'POST',
     data: answer,
     success: function (response) {
       console.log('enviado');
-      
+      author.val('');
+      content.val('');
+      author.focus();
     },
     fail: function (request) {
       if (request) {
