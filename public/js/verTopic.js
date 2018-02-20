@@ -28,13 +28,14 @@ if (topicId) {
     method: 'GET',
     success: function (response) {
       console.log(response);
+      const selector = $('.comments .form-comments-js');
       $.each(response, function (i, obj) {
-        const selector = $('.comments .form-comments-js');
         console.log(selector);
         const author = obj.author_name;
         const content = obj.content;
         templateMessage(selector, idMessage = 0, idTopic = 0, author, content)
       })
+      formResponse(selector);
     },
     fail: function (request) {
       if (request) {
@@ -89,5 +90,26 @@ function templateMessage(selector, idMessage = 0, idTopic = 0, author, content) 
         </div>
       </div>
     </div>`
+  );
+}
+
+function formResponse(selector) {
+  selector.append(`
+    <form class="ui reply form">
+      <div class="ui form">
+        <div class="field">
+          <label>Por:</label>
+          <input type="text" class="author-comment" id="answer-author-js">
+        </div>
+      </div>
+      <br>
+      <div class="field">
+        <label>Mensaje</label>
+        <textarea id="answer-comment"></textarea>
+      </div>
+      <div class="ui blue labeled submit icon button" id="submit-comment">
+        <i class="icon edit"></i> Agregar comentario
+      </div>
+    </form>`
   );
 }
