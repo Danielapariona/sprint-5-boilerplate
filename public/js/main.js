@@ -94,7 +94,7 @@ function templateComment(id = 0, author, content, responseCount = 0) {
         <img src="assets/images/matt.jpg">
       </a>
       <div class="content">
-        <a class="author">${content}</a>
+        <a class="author" href="../views/verTopic.html?topic_id=${id}">${content}</a>
         <div class="metadata">
           <span class="date">Today at 5:42PM</span>
         </div>
