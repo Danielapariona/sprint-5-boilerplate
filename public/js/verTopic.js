@@ -1,8 +1,7 @@
 var topicId = getParameterByName('topic_id');
 
-
 if (topicId) {
-  alert("El topic ID es:" + topicId);
+  console.log("El topic ID es:" + topicId);
   $.ajax({
     url: `https://examen-laboratoria-sprint-5.herokuapp.com/topics/${topicId}`,
     contentType: 'application/json',
@@ -109,12 +108,6 @@ function templateMessage(selector, idMessage = 0, idTopic = 0, author, content) 
     </div>`
   );
 }
-
-/* function formResponse(selector) {
-  selector.append(`
-    `
-  );
-} */
 
 $(document).on('click', '#submit-comment', function () {
   const author = $('#author-message').val();
