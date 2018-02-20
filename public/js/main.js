@@ -4,7 +4,6 @@ $('#add-theme').on('click', function () {
 })
 
 $(document).on('click', '.reply-comment-js', function () {
-  console.log($(this));
   const parentComments = $(this).parent().parent().parent().attr('id');
   const comments = $("#" + parentComments + " .form-comments-js");
 
@@ -18,40 +17,48 @@ $(document).on('click', '.reply-comment-js', function () {
       method: 'GET',
       success: function (response) {
         $.each(response, function (i, obj) {
+
           const author = response[i].author_name;
           const content = response[i].content;
           const idMessage = response[i].id;
           const idTopic = response[i].topic_id;
 
+          if (author == undefined && content == undefined) {
+            console.log('vacio');
+            //comments.append(`<p>No hay respuestas</p>`);
+          } else {
+            comments.append(`
+              <div class="comment" data-response="${idMessage}" data-topic="${idTopic}">
+                <a class="avatar">
+                  <img src="assets/images/jenny.jpg">
+                </a>
+                <div class="content">
+                  <a class="author">${author}</a>
+                  <div class="metadata">
+                    <span class="date">Just now</span>
+                  </div>
+                  <div class="text">
+                    ${content}
+                  </div>
+                </div>
+              </div>`
+            );
+          }
           // console.log(comments);
-          comments.append(`
-          <div class="comment" data-response="${idMessage}" data-topic="${idTopic}">
-            <a class="avatar">
-              <img src="assets/images/jenny.jpg">
-            </a>
-            <div class="content">
-              <a class="author">${author}</a>
-              <div class="metadata">
-                <span class="date">Just now</span>
-              </div>
-              <div class="text">
-                ${content}
-              </div>
-            </div>
-          </div>`);
+          // console.log(author);
         })
         comments.append(`
-          <form class="ui reply form" id="form-comment">
+          <form class="ui reply form">
             <div class="ui form">
               <div class="field">
                 <label>Por:</label>
-                <input type="text" class="author-comment" id="author-js">
+                <input type="text" class="author-comment" id="answer-author-js">
               </div>
             </div>
             <br>
             <div class="field">
               <label>Mensaje</label>
-              <textarea id="comments-js"></textarea>
+              <textarea id="answer-comment"></textarea>
             </div>
             <div class="ui blue labeled submit icon button" id="submit-comment">
               <i class="icon edit"></i> Agregar comentario
@@ -62,6 +69,7 @@ $(document).on('click', '.reply-comment-js', function () {
       fail: function (request) {
         if (request) {
           alert(request.message);
+          console.log(request.message);
         }
       }
     });
@@ -141,6 +149,37 @@ $('#post-topic').on('click', function () {
       console.log('enviado');
       $('.ui.small.modal')
         .modal('hide');
+    },
+    fail: function (request) {
+      if (request) {
+        alert(request.message);
+      }
+    }
+  });
+})
+
+
+$(document).on('click', '#submit-comment', function () {
+  console.log('submit comentario');
+  const author = $('#answer-author-js').val();
+  const content = $('#answer-comment').val();
+  const idTopic = $(this).parent().parent().parent().attr('id');
+  
+  // console.log(author);
+  // console.log(content);
+
+  const answer = {
+    "author_name": author,
+    "content": content
+  }
+  
+  $.ajax({
+    url: `http://examen-laboratoria-sprint-5.herokuapp.com/topics/${idTopic}/responses`,
+    method: 'POST',
+    data: answer,
+    success: function (response) {
+      console.log('enviado');
+      
     },
     fail: function (request) {
       if (request) {
