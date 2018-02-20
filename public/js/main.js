@@ -17,34 +17,17 @@ $(document).on('click', '.reply-comment-js', function () {
       method: 'GET',
       success: function (response) {
         $.each(response, function (i, obj) {
-          const author = response[i].author_name;
-          const content = response[i].content;
-          const idMessage = response[i].id;
-          const idTopic = response[i].topic_id;
-
+          const author = obj.author_name;
+          const content = obj.content;
+          const idMessage = obj.id;
+          const idTopic = obj.topic_id;
           if (author == undefined && content == undefined) {
             console.log('vacio');
             //comments.append(`<p>No hay respuestas</p>`);
           } else {
-            comments.append(`
-              <div class="comment" data-response="${idMessage}" data-topic="${idTopic}">
-                <a class="avatar">
-                  <img src="assets/images/jenny.jpg">
-                </a>
-                <div class="content">
-                  <a class="author">${author}</a>
-                  <div class="metadata">
-                    <span class="date">Just now</span>
-                  </div>
-                  <div class="text">
-                    ${content}
-                  </div>
-                </div>
-              </div>`
-            );
+            // Muestra todos los mensajes desde la API
+            templateMessage(comments, idMessage, idTopic, author, content)
           }
-          // console.log(comments);
-          // console.log(author);
         })
         comments.append(`
           <form class="ui reply form">
@@ -89,7 +72,7 @@ $.ajax({
   contentType: 'application/json',
   method: 'GET',
   success: function (response) {
-    $.each(response.reverse() , function (i, obj) {
+    $.each(response.reverse(), function (i, obj) {
       const id = obj.id;
       const author = obj.author_name;
       const content = obj.content;
@@ -131,6 +114,25 @@ function templateComment(id = 0, author, content, responseCount = 0) {
   );
 }
 
+function templateMessage(selector, idMessage=0, idTopic=0, author, content) {
+  selector.prepend(`
+    <div class="comment" data-response="${idMessage}" data-topic="${idTopic}">
+      <a class="avatar">
+        <img src="assets/images/jenny.jpg">
+      </a>
+      <div class="content">
+        <a class="author">${author}</a>
+        <div class="metadata">
+          <span class="date">Just now</span>
+        </div>
+        <div class="text">
+          ${content}
+        </div>
+      </div>
+    </div>`
+  );
+}
+
 $('#post-topic').on('click', function () {
   const author = $('#post-author').val();
   const content = $('#post-content').val();
@@ -158,12 +160,17 @@ $('#post-topic').on('click', function () {
   });
 })
 
+
 $(document).on('click', '#submit-comment', function () {
   console.log('submit comentario');
   const author = $('#answer-author-js');
   const content = $('#answer-comment');
   const idTopic = $(this).parent().parent().parent().attr('id');
 
+  // Selector mediante el id, para agregar el formulario
+  let message = $("#" + idTopic + " .form-comments-js");
+  console.log(message);
+  
   const answer = {
     "author_name": author.val(),
     "content": content.val()
@@ -175,9 +182,9 @@ $(document).on('click', '#submit-comment', function () {
     data: answer,
     success: function (response) {
       console.log('enviado');
-      author.val('');
-      content.val('');
       author.focus();
+      // Agrega al DOM
+      templateMessage(message, idMessage=0, topic=0, answer.author_name, answer.content);
     },
     fail: function (request) {
       if (request) {
