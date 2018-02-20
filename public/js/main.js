@@ -1,3 +1,7 @@
+// Variables
+const containerTopics = $('#container-comments-js');
+const inputSearch = $('#search-topic');
+
 // Muestra el modal para agregar tema
 $('#add-theme').on('click', function () {
   $('.ui.small.modal')
@@ -47,6 +51,9 @@ $.ajax({
       // Agregando al DOM desde el API
       templateComment(id, author, content, responseCount)
     })
+    const topics = $('#container-comments-js .comment');
+    searchTopic(inputSearch, topics);
+
   },
   fail: function (request) {
     if (request) {
@@ -58,8 +65,8 @@ $.ajax({
 
 // TEMPLATE TEMA
 function templateComment(id = 0, author, content, responseCount = 0) {
-  $('#container-comments-js').prepend(
-    `<div class="comment" id="${id}">
+  containerTopics.prepend(
+    `<div class="comment comment-card" id="${id}" data-title="${content}">
       <a class="avatar">
         <img src="assets/images/matt.jpg">
       </a>
@@ -119,7 +126,7 @@ $(document).on('click', '.reply-comment-js', function () {
             templateMessage(comments, idMessage, idTopic, author, content)
           }
         })
-        
+
       },
       fail: function (request) {
         if (request) {
@@ -214,3 +221,18 @@ $(document).on('click', '#submit-comment', function () {
   });
 })
 // ---------------------------
+
+// Filtrando data
+function searchTopic(inputSearch, topics) {
+  const elements = topics;
+  inputSearch.on('input', function () {
+    const valueInput = inputSearch.val().toLowerCase();
+    elements.hide();
+    elements.each(function(){
+      const topic = `'${$(this).data('title')}'`
+      if (topic.indexOf(valueInput) !== -1) {
+        $(this).show();
+      }
+    })
+  });
+}
