@@ -13,7 +13,7 @@ $('#post-topic').on('click', function () {
     "content": content
   }
   $.ajax({
-    url: `http://examen-laboratoria-sprint-5.herokuapp.com/topics`,
+    url: `https://examen-laboratoria-sprint-5.herokuapp.com/topics`,
     method: 'POST',
     data: topic,
     success: function (response) {
@@ -35,7 +35,7 @@ $('#post-topic').on('click', function () {
 // MOSTRAR TODOS LOS TEMAS desde el API
 const $containerComments = $('#container-comments-js');
 $.ajax({
-  url: 'http://examen-laboratoria-sprint-5.herokuapp.com/topics',
+  url: 'https://examen-laboratoria-sprint-5.herokuapp.com/topics',
   contentType: 'application/json',
   method: 'GET',
   success: function (response) {
@@ -99,7 +99,7 @@ $(document).on('click', '.reply-comment-js', function () {
 
     // Petición para VER LAS RESPUESTA por cada tema
     $.ajax({
-      url: `http://examen-laboratoria-sprint-5.herokuapp.com/topics/${idTopic}/responses`,
+      url: `https://examen-laboratoria-sprint-5.herokuapp.com/topics/${idTopic}/responses`,
       contentType: 'application/json',
       method: 'GET',
       success: function (response) {
@@ -195,7 +195,7 @@ $(document).on('click', '#submit-comment', function () {
   }
 
   $.ajax({
-    url: `http://examen-laboratoria-sprint-5.herokuapp.com/topics/${idTopic}/responses`,
+    url: `https://examen-laboratoria-sprint-5.herokuapp.com/topics/${idTopic}/responses`,
     method: 'POST',
     data: answer,
     success: function (response) {

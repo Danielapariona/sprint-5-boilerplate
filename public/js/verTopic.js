@@ -4,7 +4,7 @@ var topicId = getParameterByName('topic_id');
 if (topicId) {
   alert("El topic ID es:" + topicId);
   $.ajax({
-    url: `http://examen-laboratoria-sprint-5.herokuapp.com/topics/${topicId}`,
+    url: `https://examen-laboratoria-sprint-5.herokuapp.com/topics/${topicId}`,
     contentType: 'application/json',
     method: 'GET',
     success: function (response) {
@@ -23,7 +23,7 @@ if (topicId) {
   });
 
   $.ajax({
-    url: `http://examen-laboratoria-sprint-5.herokuapp.com/topics/${topicId}/responses`,
+    url: `https://examen-laboratoria-sprint-5.herokuapp.com/topics/${topicId}/responses`,
     contentType: 'application/json',
     method: 'GET',
     success: function (response) {
@@ -126,7 +126,7 @@ $(document).on('click', '#submit-comment', function () {
   }
 
   $.ajax({
-    url: `http://examen-laboratoria-sprint-5.herokuapp.com/topics/${topicId}/responses`,
+    url: `https://examen-laboratoria-sprint-5.herokuapp.com/topics/${topicId}/responses`,
     method: 'POST',
     data: message,
     success: function (response) {
