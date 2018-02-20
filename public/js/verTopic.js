@@ -28,9 +28,8 @@ if (topicId) {
     method: 'GET',
     success: function (response) {
       console.log(response);
-      const selector = $('.comments .form-comments-js');
-      $.each(response, function (i, obj) {
-        console.log(selector);
+      const selector = $('.form-comments-js');
+      $.each(response.reverse(), function (i, obj) {
         const author = obj.author_name;
         const content = obj.content;
         templateMessage(selector, idMessage = 0, idTopic = 0, author, content)
@@ -66,8 +65,26 @@ function templateComment(id = 0, author, content, responseCount = 0) {
           <span>Respuestas</span>
           <a class="reply reply-comment-js">Responder</a>-->
         </div>
-        <!-- Comentarios -->
-        <div class="comments form-comments-js">
+        <div class="comments">
+          <form class="ui reply form">
+            <div class="ui form">
+              <div class="field">
+                <label>Por:</label>
+                <input type="text" class="author-comment" id="author-message">
+              </div>
+            </div>
+            <br>
+            <div class="field">
+              <label>Mensaje</label>
+              <textarea id="content-message"></textarea>
+            </div>
+            <div class="ui blue labeled submit icon button" id="submit-comment">
+              <i class="icon edit"></i> Agregar comentario
+            </div>
+          </form><br>
+          <div class="form-comments-js">
+            <!-- Comentarios -->
+          </div>
         </div>
       </div>
     </div>`
@@ -93,23 +110,35 @@ function templateMessage(selector, idMessage = 0, idTopic = 0, author, content) 
   );
 }
 
-function formResponse(selector) {
+/* function formResponse(selector) {
   selector.append(`
-    <form class="ui reply form">
-      <div class="ui form">
-        <div class="field">
-          <label>Por:</label>
-          <input type="text" class="author-comment" id="answer-author-js">
-        </div>
-      </div>
-      <br>
-      <div class="field">
-        <label>Mensaje</label>
-        <textarea id="answer-comment"></textarea>
-      </div>
-      <div class="ui blue labeled submit icon button" id="submit-comment">
-        <i class="icon edit"></i> Agregar comentario
-      </div>
-    </form>`
+    `
   );
-}
+} */
+
+$(document).on('click', '#submit-comment', function () {
+  const author = $('#author-message').val();
+  const content = $('#content-message').val();
+
+  const message = {
+    "author_name": author,
+    "content": content
+  }
+
+  $.ajax({
+    url: `http://examen-laboratoria-sprint-5.herokuapp.com/topics/${topicId}/responses`,
+    method: 'POST',
+    data: message,
+    success: function (response) {
+      console.log('enviado');
+
+      const selector = $('.form-comments-js');
+      templateMessage(selector, idMessage = 0, idTopic = 0, message.author_name, message.content);
+    },
+    fail: function (request) {
+      if (request) {
+        alert(request.message);
+      }
+    }
+  });
+})
