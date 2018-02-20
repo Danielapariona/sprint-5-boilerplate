@@ -112,12 +112,12 @@ function templateComment(id, author, content, responseCount) {
         <img src="assets/images/matt.jpg">
       </a>
       <div class="content">
-        <a class="author">${author}</a>
+        <a class="author">${content}</a>
         <div class="metadata">
           <span class="date">Today at 5:42PM</span>
         </div>
         <div class="text">
-          ${content}
+          <span>Autor: ${author}</span>
         </div>
         <div class="actions">
           <span>${responseCount}</span>
