@@ -30,7 +30,6 @@ if (topicId) {
         const content = obj.content;
         templateMessage(selector, idMessage = 0, idTopic = 0, author, content)
       })
-      formResponse(selector);
     },
     fail: function (request) {
       if (request) {
