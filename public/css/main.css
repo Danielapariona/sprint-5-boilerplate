@@ -13,3 +13,7 @@
 .content-block {
   display: block !important;
 }
+
+.ui.button.add-topic {
+  margin-top: 10px;
+}
